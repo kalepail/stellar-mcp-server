@@ -1,7 +1,6 @@
 import { Hono } from "hono";
 import {
 	layout,
-	homeContent,
 	parseApproveFormBody,
 	renderAuthorizationRejectedContent,
 	renderAuthorizationApprovedContent,
@@ -10,19 +9,7 @@ import {
 } from "./utils";
 import type { OAuthHelpers } from "@cloudflare/workers-oauth-provider";
 
-export type Bindings = Env & {
-	OAUTH_PROVIDER: OAuthHelpers;
-};
-
-const app = new Hono<{
-	Bindings: Bindings;
-}>();
-
-// Render a basic homepage placeholder to make sure the app is up
-app.get("/", async (c) => {
-	const content = await homeContent(c.req.raw);
-	return c.html(layout(content, "MCP Remote Auth Demo - Home"));
-});
+const app = new Hono<{ Bindings: Env & { OAUTH_PROVIDER: OAuthHelpers } }>();
 
 // Render an authorization page
 // If the user is logged in, we'll show a form to approve the appropriate scopes

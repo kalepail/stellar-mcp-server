@@ -4,15 +4,24 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "stellar-mcp",
+	"name": "stellar-mcp-server",
 	"main": "src/index.ts",
-	"compatibility_date": "2025-03-10",
+	"compatibility_date": "2025-04-07",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
 	"migrations": [
 		{
 			"new_sqlite_classes": [
 				"MyMCP"
 			],
 			"tag": "v1"
+		},
+		{
+			"new_sqlite_classes": [
+				"StellarMCPStore"
+			],
+			"tag": "v3"
 		}
 	],
 	"durable_objects": {
@@ -20,22 +29,28 @@
 			{
 				"class_name": "MyMCP",
 				"name": "MCP_OBJECT"
+			},
+			{
+				"class_name": "StellarMCPStore",
+				"name": "STELLAR_MCP_STORE"
 			}
 		]
 	},
 	"kv_namespaces": [
 		{
 			"binding": "OAUTH_KV",
-			"id": "<ADD YOUR KV NAMESPACEID HERE>"
+			"id": "332259530130451fbefa2e1c137deffb"
 		}
 	],
+	"ai": {
+		"binding": "AI"
+	},
+	"dev": {
+		"port": 8787
+	},
 	"observability": {
 		"enabled": true
 	},
-	"assets": {
-		"directory": "./static/",
-		"binding": "ASSETS"
-	}
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
@@ -53,7 +68,12 @@
 	 * Environment Variables
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
 	 */
-	// "vars": { "MY_VARIABLE": "production_value" },
+	"vars": {
+		"RPC_URL": "https://soroban-testnet.stellar.org",
+		"FUNGIBLE_PAUSABLE_WASM_HASH": "926f0fe845aea70c80698e3139cfd4879158846d1b9b9b4b8ae8558f5bb01b67",
+		"NETWORK_PASSPHRASE": "Test SDF Network ; September 2015",
+		"LAUNCHTUBE_URL": "https://testnet.launchtube.xyz"
+	},
 	/**
 	 * Note: Use secrets to store sensitive data.
 	 * https://developers.cloudflare.com/workers/configuration/secrets/

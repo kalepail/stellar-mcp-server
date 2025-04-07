@@ -1,0 +1,5 @@
+RPC_URL="https://soroban-testnet.stellar.org"
+FUNGIBLE_PAUSABLE_WASM_HASH="926f0fe845aea70c80698e3139cfd4879158846d1b9b9b4b8ae8558f5bb01b67"
+NETWORK_PASSPHRASE="Test SDF Network ; September 2015"
+LAUNCHTUBE_URL="https://testnet.launchtube.xyz"
+LAUNCHTUBE_JWT="<JWT>"
