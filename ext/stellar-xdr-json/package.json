@@ -1,0 +1,15 @@
+{
+  "name": "@stellar/stellar-xdr-json",
+  "type": "module",
+  "version": "22.0.0-rc.1.1",
+  "files": [
+    "stellar_xdr_json_bg.wasm",
+    "stellar_xdr_json.js",
+    "stellar_xdr_json.d.ts"
+  ],
+  "main": "stellar_xdr_json.js",
+  "types": "stellar_xdr_json.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

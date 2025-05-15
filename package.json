@@ -1,0 +1,27 @@
+{
+	"name": "remote-mcp-server-authless",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"format": "biome format --write",
+		"lint:fix": "biome lint --fix",
+		"start": "wrangler dev",
+		"cf-typegen": "wrangler types"
+	},
+	"devDependencies": {
+		"@types/node": "^22.15.17",
+		"typescript": "^5.8.3",
+		"wrangler": "^4.15.0"
+	},
+	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.11.1",
+		"@stellar/stellar-sdk": "^13.3.0",
+		"agents": "^0.0.80",
+		"passkey-kit": "^0.10.24",
+		"zod": "^3.24.4",
+		"fungible-pausable-sdk": "file:./ext/fungible-pausable-sdk",
+		"@stellar/stellar-xdr-json": "file:./ext/stellar-xdr-json"
+	}
+}
